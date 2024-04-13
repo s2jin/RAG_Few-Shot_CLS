@@ -1,0 +1,4 @@
+name: 'bert'
+_target_: src.tokenizer.bert.Tokenizer 
+
+path: "klue/bert-base"

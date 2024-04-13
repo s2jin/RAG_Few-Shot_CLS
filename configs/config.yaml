@@ -1,0 +1,53 @@
+# @package _global_
+
+name: null      # of the run, require experiment mode
+seed: 42        # for random number generators pytorch, numpy and python.random
+
+work_dir: ${hydra:runtime.cwd}      # path to original working directory, why use thie? -> https://hydra.cc/docs/next/tutorials/basic/running_your_app/working_directory
+job_num: ${hydra:job.num}
+
+save_dir: checkpoint/${name}_v${version}_${mode}
+save_path: exp #${name}_lr${model.optimizer.lr:.0E}_ms${datamodule.max_source_length}
+predict_file_path: 'prediction_test.jsonl'
+
+
+print_config: True      # pretty print config at the start of the run using Rich library
+ignore_warnings: True       # disable python warnings
+
+# ----- specify here default training configuration ----- 
+mode: 'train'
+
+defaults:
+    - _self_      ## main for library = current dir
+    - model: null
+    - tokenizer: null
+    - datamodule: null
+    - agent: null
+    - task: ???
+    
+    #- override hydra/hydra_logging: disabled      # do not create run.log
+    #- override hydra/job_logging: disabled        # do not create run.log
+    - override hydra/hydra_logging: colorlog      # enable color logging
+    - override hydra/job_logging: colorlog        # enable color logging
+
+# -----------------------------------------------------
+
+
+# ----- for multi-run ---------------------
+hydra:
+    sweep:
+        dir: ${save_dir}
+        subdir: ${save_path} 
+    run:        # do not create outputs dir, require output_subdir=null
+        #dir: checkpoint/${name}/${seed}/${now:%Y-%m-%d_%H-%M}
+        dir: ${save_dir}/${save_path}
+    job_logging:
+        handlers:
+          file:
+              filename: ${save_dir}/${save_path}/log_${mode}.log
+    #output_subdir: null     # do not create outputs dir, require run.dir=./
+    #output_subdir: checkpoint     # do not create outputs dir, require run.dir=./
+    job:
+        chdir: False
+#  -----------------------------------------
+

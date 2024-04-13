@@ -1,0 +1,18 @@
+# @package _global_
+
+name: 'klueTC_bert_cls'
+version: 1
+
+defaults:
+    - override /model: bert.yaml
+    - override /tokenizer: bert.yaml
+    - override /datamodule: klueTC.yaml
+    - override /agent: bert_cls.yaml
+
+model:
+    model:
+        path: 'klue/bert-base'
+    optimizer:
+        lr: 1e-5
+tokenizer:
+    path: 'klue/bert-base'

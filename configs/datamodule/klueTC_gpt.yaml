@@ -1,0 +1,20 @@
+_target_: src.datamodule.klueTC_gpt.DataModule
+
+name: 'klueTC_gpt'
+## dataloader parameter
+batch_size: 128
+shuffle: False
+num_workers: 4
+
+## data
+data_dir: 'data/klueTC'     # path to folder with data
+train_data: 'training.jsonl'
+valid_data: 'valid.jsonl'
+test_data: 'test.jsonl'
+labels: 'label_list.txt'
+#num_labels: 33
+
+## length limit
+check_length: False
+max_source_length: 64
+max_target_length: 64

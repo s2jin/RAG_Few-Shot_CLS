@@ -1,0 +1,20 @@
+name: 'bert_unsuper_retriever_gpt'
+
+model:
+    _target_: src.models.bert_unsuper_retriever_gpt.SequenceClassification
+    retriever:
+        _class_: src.models.backbone.bert_retriever.BertRetrieval
+        path: 'klue/bert-base'
+        num_kbs: -1
+        proj_size: 512
+        num_candidates: 5
+    generator:
+        _class_: transformers.GPT2LMHeadModel
+        path: 'skt/ko-gpt-trinity-1.2B-v0.5' 
+        num_beams: 2
+        repetition_penalty: 1.0
+        temperature: 1.0
+
+optimizer:
+    _target_: torch.optim.Adam
+    lr: 1e-4

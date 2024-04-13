@@ -1,0 +1,11 @@
+name: 'gpt'
+
+model:
+    _target_: src.models.gpt.SequenceClassification
+    _class_: transformers.GPT2LMHeadModel
+    path: 'skt/ko-gpt-trinity-1.2B-v0.5'
+    num_beams: 2
+
+optimizer:
+    _target_: torch.optim.Adam
+    lr: 1e-4

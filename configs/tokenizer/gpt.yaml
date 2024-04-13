@@ -1,0 +1,4 @@
+name: 'gpt'
+
+_target_: src.tokenizer.gpt.Tokenizer 
+path: 'skt/ko-gpt-trinity-1.2B-v0.5' 

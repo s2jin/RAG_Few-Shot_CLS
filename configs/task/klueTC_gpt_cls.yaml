@@ -1,0 +1,18 @@
+# @package _global_
+
+name: 'klueTC_gpt_cls'
+version: 1
+
+defaults:
+    - override /model: gpt.yaml
+    - override /tokenizer: gpt.yaml
+    - override /datamodule: klueTC_gpt.yaml
+    - override /agent: gpt_cls.yaml
+
+model:
+    model:
+        path: 'skt/ko-gpt-trinity-1.2B-v0.5'
+    optimizer:
+        lr: 1e-5
+tokenizer:
+    path: 'skt/ko-gpt-trinity-1.2B-v0.5'

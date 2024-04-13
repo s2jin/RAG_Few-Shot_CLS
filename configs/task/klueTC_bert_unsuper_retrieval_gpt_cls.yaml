@@ -1,0 +1,24 @@
+# @package _global_
+
+name: 'klueTC_bert_unsuper_retriever_cls'
+version: 1
+
+defaults:
+    - override /model: bert_unsuper_retriever_gpt.yaml
+    - override /tokenizer: bert_retriever_gpt.yaml
+    - override /datamodule: klueTC_with_kb.yaml
+    - override /agent: bert_retriever_gpt_cls.yaml
+
+model:
+    model:
+        retriever:
+            path: 'klue/bert-base'
+        generator:
+            path: 'skt/ko-gpt-trinity-1.2B-v0.5' 
+    optimizer:
+        lr: 1e-5
+tokenizer:
+    retriever:
+        path: 'klue/bert-base'
+    generator:
+        path: 'skt/ko-gpt-trinity-1.2B-v0.5'

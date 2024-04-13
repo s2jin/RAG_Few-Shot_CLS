@@ -1,0 +1,9 @@
+name: 'gpt_cls'
+_target_: src.agent.${agent.name}.Agent
+
+epochs: 1000
+patience: 5
+model_all_save: false
+
+predict_after_all_training: false       # evaluate on test set, using best model
+predict_after_training: true       # evaluate on test set, using best model

@@ -1,0 +1,10 @@
+name: 'bert'
+
+model:
+    _target_: src.models.bert.SequenceClassification
+    _class_: transformers.BertForSequenceClassification
+    path: 'klue/bert-base'
+
+optimizer:
+    _target_: torch.optim.Adam
+    lr: 1e-4
